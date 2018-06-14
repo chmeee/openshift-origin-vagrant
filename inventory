@@ -21,7 +21,7 @@ openshift_master_htpasswd_users={'demo': '$apr1$.MaA77kd$Rlnn6RXq9kCjnEfh5I3w/.'
 
 # put the router on dedicated infra node
 openshift_hosted_router_selector='region=infra'
-openshift_master_default_subdomain=origin.10.255.1.85.xip.io
+openshift_master_default_subdomain=origin.MASTERIP.xip.io
 
 # put the image registry on dedicated infra node
 openshift_hosted_registry_selector='region=infra'
@@ -32,10 +32,10 @@ osm_default_node_selector='region=primary'
 # Vagrant variables
 ansible_port='22' 
 ansible_user='vagrant'
-ansible_ssh_private_key_file='/home/jmpavon/.vagrant.d/insecure_private_key'
+ansible_ssh_private_key_file='/home/USER/.vagrant.d/insecure_private_key'
 
 [masters]
-origin-master  openshift_public_hostname="console.10.255.1.85.xip.io"
+origin-master  openshift_public_hostname="console.MASTERIP.xip.io"
 
 [etcd]
 origin-etcd
@@ -44,4 +44,4 @@ origin-etcd
 # master needs to be included in the node to be configured in the SDN
 origin-master
 origin-infra openshift_node_labels="{'region': 'infra', 'zone': 'default'}"
-origin-node-[1:2] openshift_node_labels="{'region': 'primary', 'zone': 'default'}"
+origin-node-[1:NODECOUNT] openshift_node_labels="{'region': 'primary', 'zone': 'default'}"
