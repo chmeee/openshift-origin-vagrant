@@ -14,8 +14,8 @@ done
 
 MASTERIP=$(vagrant ssh-config origin-master | grep -Po '\d+\.\d+\.\d+\.\d+')
 
-sed -i "s#USERHOME#$HOME#" inventory
-sed -i "s#MASTERIP#$MASTERIP#" inventory
-sed -i "s#NODECOUNT#$NODECOUNT#" inventory
+sed -e "s#USERHOME#$HOME#;\\
+	s#MASTERIP#$MASTERIP#; \\
+	s#NODECOUNT#$NODECOUNT#" inventory-template > inventory
 
 exit $EXIT
