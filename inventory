@@ -8,11 +8,11 @@ ansible_ssh_user=vagrant
 ansible_become=yes
 
 deployment_type=origin
-openshift_release=v3.7.0
+openshift_release=v3.7.2
 containerized=true
 openshift_install_examples=true
 enable_excluders=false
-openshift_check_min_host_memory_gb=4
+openshift_check_min_host_memory_gb=2
 openshift_disable_check=docker_image_availability,docker_storage,disk_availability
 
 # use htpasswd authentication with demo/demo
@@ -21,7 +21,7 @@ openshift_master_htpasswd_users={'demo': '$apr1$.MaA77kd$Rlnn6RXq9kCjnEfh5I3w/.'
 
 # put the router on dedicated infra node
 openshift_hosted_router_selector='region=infra'
-openshift_master_default_subdomain=origin.lab.hostgate.net
+openshift_master_default_subdomain=origin.10.255.1.85.xip.io
 
 # put the image registry on dedicated infra node
 openshift_hosted_registry_selector='region=infra'
@@ -32,10 +32,10 @@ osm_default_node_selector='region=primary'
 # Vagrant variables
 ansible_port='22' 
 ansible_user='vagrant'
-ansible_ssh_private_key_file='/home/berndonline/.vagrant.d/insecure_private_key'
+ansible_ssh_private_key_file='/home/jmpavon/.vagrant.d/insecure_private_key'
 
 [masters]
-origin-master  openshift_public_hostname="console.lab.hostgate.net"
+origin-master  openshift_public_hostname="console.10.255.1.85.xip.io"
 
 [etcd]
 origin-etcd
