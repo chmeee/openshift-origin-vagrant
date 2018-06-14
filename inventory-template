@@ -12,7 +12,7 @@ openshift_release=v3.7.2
 containerized=true
 openshift_install_examples=true
 enable_excluders=false
-openshift_check_min_host_memory_gb=2
+openshift_check_min_host_memory_gb=MEMORY
 openshift_disable_check=docker_image_availability,docker_storage,disk_availability
 
 # use htpasswd authentication with demo/demo
