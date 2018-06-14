@@ -1,6 +1,12 @@
 # -*- mode: ruby -*-
-# vi: set ft=ruby :
+# vi: set ft=ruby : 
 
+MEMORY=2048
+MASTERMEM=MEMORY
+INFRAMEM=MEMORY
+NODEMEM=MEMORY
+ETCDMEM=MEMORY
+NODECOUNT=2
 
 Vagrant.configure("2") do |config|
   config.hostmanager.enabled = true
@@ -26,84 +32,70 @@ Vagrant.configure("2") do |config|
     device.vm.box = "centos/7"
 
     device.vm.provider :libvirt do |v|
-      v.memory = 4096
+      v.memory = MASTERMEM
     end
-  config.vm.synced_folder '.', '/vagrant', disabled: false
-
-  config.vm.boot_timeout = 400
-
-  config.ssh.forward_agent = true
-  config.ssh.guest_port = 22
-  config.ssh.insert_key = false
-  device.vm.provision :shell , path: "./helper_scripts/config_server.sh"
-end
+    config.vm.synced_folder '.', '/vagrant', disabled: false
+  
+    config.vm.boot_timeout = 400
+  
+    config.ssh.forward_agent = true
+    config.ssh.guest_port = 22
+    config.ssh.insert_key = false
+    device.vm.provision :shell , path: "./helper_scripts/config_server.sh"
+  end
 
   config.vm.define "origin-etcd" do |device|
     device.vm.host_name = "origin-etcd"
     device.vm.box = "centos/7"
 
     device.vm.provider :libvirt do |v|
-      v.memory = 4096
+      v.memory = ETCDMEM
     end
-  config.vm.synced_folder '.', '/vagrant', disabled: false
+    config.vm.synced_folder '.', '/vagrant', disabled: false
 
-  config.vm.boot_timeout = 400
+    config.vm.boot_timeout = 400
 
-  config.ssh.forward_agent = true
-  config.ssh.guest_port = 22
-  config.ssh.insert_key = false
-  device.vm.provision :shell , path: "./helper_scripts/config_server.sh"
-end
+    config.ssh.forward_agent = true
+    config.ssh.guest_port = 22
+    config.ssh.insert_key = false
+    device.vm.provision :shell , path: "./helper_scripts/config_server.sh"
+  end
 
   config.vm.define "origin-infra" do |device|
     device.vm.host_name = "origin-infra"
     device.vm.box = "centos/7"
 
     device.vm.provider :libvirt do |v|
-      v.memory = 4096
+      v.memory = INFRAMEM
     end
-  config.vm.synced_folder '.', '/vagrant', disabled: false
+    config.vm.synced_folder '.', '/vagrant', disabled: false
+  
+    config.vm.boot_timeout = 400
+  
+    config.ssh.forward_agent = true
+    config.ssh.guest_port = 22
+    config.ssh.insert_key = false
+    device.vm.provision :shell , path: "./helper_scripts/config_server.sh"
+  end
 
-  config.vm.boot_timeout = 400
 
-  config.ssh.forward_agent = true
-  config.ssh.guest_port = 22
-  config.ssh.insert_key = false
-  device.vm.provision :shell , path: "./helper_scripts/config_server.sh"
-end
+  NODECOUNT.times do |n|
+    config.vm.define "origin-node-#{n+1}" do |device|
+      device.vm.host_name = "origin-node-#{n+1}"
+      device.vm.box = "centos/7"
 
-  config.vm.define "origin-node-1" do |device|
-    device.vm.host_name = "origin-node-1"
-    device.vm.box = "centos/7"
-
-    device.vm.provider :libvirt do |v|
-      v.memory = 4096
+      device.vm.provider :libvirt do |v|
+        v.memory = NODEMEM
+      end
+      config.vm.synced_folder '.', '/vagrant', disabled: false
+  
+      config.vm.boot_timeout = 400
+  
+      config.ssh.forward_agent = true
+      config.ssh.guest_port = 22
+      config.ssh.insert_key = false
+      device.vm.provision :shell , path: "./helper_scripts/config_server.sh"
     end
-  config.vm.synced_folder '.', '/vagrant', disabled: false
-
-  config.vm.boot_timeout = 400
-
-  config.ssh.forward_agent = true
-  config.ssh.guest_port = 22
-  config.ssh.insert_key = false
-  device.vm.provision :shell , path: "./helper_scripts/config_server.sh"
-end
-
-  config.vm.define "origin-node-2" do |device|
-    device.vm.host_name = "origin-node-2"
-    device.vm.box = "centos/7"
-
-    device.vm.provider :libvirt do |v|
-      v.memory = 4096
-    end
-  config.vm.synced_folder '.', '/vagrant', disabled: false
-
-  config.vm.boot_timeout = 400
-
-  config.ssh.forward_agent = true
-  config.ssh.guest_port = 22
-  config.ssh.insert_key = false
-  device.vm.provision :shell , path: "./helper_scripts/config_server.sh"
-end
+  end
 
 end
