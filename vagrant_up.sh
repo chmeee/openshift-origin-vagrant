@@ -25,3 +25,5 @@ sed -e "s#USERHOME#$HOME#;
 	s#MEMORY#$MEMORY#;
 	s#MASTERIP#$MASTERIP#;
 	s#NODECOUNT#$NODECOUNT#" inventory-template > inventory
+
+# ansible-playbook ./playbooks/byo/config.yml -i ../openshift-origin-vagrant/inventory
