@@ -22,6 +22,9 @@ openshift_master_htpasswd_users={'demo': '$apr1$.MaA77kd$Rlnn6RXq9kCjnEfh5I3w/.'
 # configure the multi-tenant SDN plugin (default is 'redhat/openshift-ovs-subnet')
 os_sdn_network_plugin_name='redhat/openshift-ovs-multitenant'
 
+# configure service proxy (by default is iptables)
+openshift_node_proxy_mode='userspace'
+
 # put the router on dedicated infra node
 openshift_hosted_router_selector='region=infra'
 openshift_master_default_subdomain=origin.INFRAIP.xip.io
