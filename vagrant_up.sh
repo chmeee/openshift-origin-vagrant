@@ -18,12 +18,14 @@ done
 if [[ $EXIT != 0 ]]; then echo "Vagrant up error, no inventory file will be created"; exit $EXIT; fi
 
 MASTERIP=$(vagrant ssh-config origin-master | grep -Po '\d+\.\d+\.\d+\.\d+')
+INFRAIP=$(vagrant ssh-config origin-infra | grep -Po '\d+\.\d+\.\d+\.\d+')
 
-if [[ -z $MASTERIP ]]; then echo "Couldn't get master IP, no inventory file will be created"; exit $EXIT; fi
+if [[ -z $MASTERIP || -z $INFRAIP ]]; then echo "Couldn't get master or infra IP, no inventory file will be created"; exit $EXIT; fi
 
 sed -e "s#USERHOME#$HOME#;
 	s#MEMORY#$MEMORY#;
 	s#MASTERIP#$MASTERIP#;
+	s#INFRAIP#$INFRAIP#;
 	s#NODECOUNT#$NODECOUNT#" inventory-template > inventory
 
 cd ../openshift-ansible

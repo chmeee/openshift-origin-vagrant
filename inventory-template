@@ -24,7 +24,7 @@ os_sdn_network_plugin_name='redhat/openshift-ovs-multitenant'
 
 # put the router on dedicated infra node
 openshift_hosted_router_selector='region=infra'
-openshift_master_default_subdomain=origin.MASTERIP.xip.io
+openshift_master_default_subdomain=origin.INFRAIP.xip.io
 
 # put the image registry on dedicated infra node
 openshift_hosted_registry_selector='region=infra'
