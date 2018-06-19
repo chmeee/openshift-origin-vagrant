@@ -68,7 +68,7 @@ origin-master  openshift_public_hostname="console.MASTERIP.xip.io"
 origin-etcd
 
 [nfs]
-master
+origin-master
 
 [nodes]
 # master needs to be included in the node to be configured in the SDN
