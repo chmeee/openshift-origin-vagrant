@@ -8,6 +8,12 @@ Now, running `vagrant_up.sh` will:
   * Launch the ansible playbook from the OpenShift Ansible [repository](https://github.com/openshift/openshift-ansible), which you should have cloned in the same base directory as this one.
   * Copy the admin.kubeconfig file to access the OCP cluster as admin from `oc`.
 
+The `inventory-template` file will install `metrics` and `logging` by default.
+For `metrics` you need:
+  * java
+  * python-passlib
+  * htpasswd (package `httpd-tools` on rpm-based linux, `apache-tools` on AUR)
+
 ## Known issues
 
 At least with 2G mem, ASB is not starting.
