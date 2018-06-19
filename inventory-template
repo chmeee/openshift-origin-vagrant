@@ -2,6 +2,7 @@
 masters
 nodes
 etcd
+nfs
 
 [OSEv3:vars]
 ansible_ssh_user=vagrant
@@ -22,8 +23,12 @@ openshift_master_htpasswd_users={'demo': '$apr1$.MaA77kd$Rlnn6RXq9kCjnEfh5I3w/.'
 # configure the multi-tenant SDN plugin (default is 'redhat/openshift-ovs-subnet')
 os_sdn_network_plugin_name='redhat/openshift-ovs-multitenant'
 
-# configure service proxy (by default is iptables)
-openshift_node_proxy_mode='userspace'
+# configure service proxy: 'iptables' (default) or 'userspace'
+openshift_node_proxy_mode='iptables'
+
+# configure cluster metrics & logging
+openshift_metrics_install_metrics=true
+openshift_logging_install_logging=true
 
 # put the router on dedicated infra node
 openshift_hosted_router_selector='region=infra'
@@ -35,6 +40,22 @@ openshift_hosted_registry_selector='region=infra'
 # project pods should be placed on primary nodes
 osm_default_node_selector='region=primary'
 
+# etcd config for ASB
+openshift_hosted_etcd_storage_kind=nfs
+openshift_hosted_etcd_storage_nfs_options="*(rw,root_squash,sync,no_wdelay)"
+openshift_hosted_etcd_storage_nfs_directory=/opt/osev3-etcd 
+openshift_hosted_etcd_storage_volume_name=etcd-vol2 
+openshift_hosted_etcd_storage_access_modes=["ReadWriteOnce"]
+openshift_hosted_etcd_storage_volume_size=1G
+openshift_hosted_etcd_storage_labels={'storage': 'etcd'}
+
+# ASB config
+ansible_service_broker_image_prefix=openshift/
+ansible_service_broker_registry_url="registry.access.redhat.com"
+# ansible_service_broker_registry_user=<user_name> 
+# ansible_service_broker_registry_password=<password> 
+# ansible_service_broker_registry_organization=<organization> 
+
 # Vagrant variables
 ansible_port='22' 
 ansible_user='vagrant'
@@ -45,6 +66,9 @@ origin-master  openshift_public_hostname="console.MASTERIP.xip.io"
 
 [etcd]
 origin-etcd
+
+[nfs]
+master
 
 [nodes]
 # master needs to be included in the node to be configured in the SDN
