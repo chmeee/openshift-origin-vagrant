@@ -9,13 +9,13 @@ EXIT=0
 
 for role in master etcd infra; do
   vagrant up origin-$role --color <<< 'boot' || EXIT=$?
+  if [[ $EXIT != 0 ]]; then echo "Vagrant up error, no inventory file will be created (exit code $EXIT)"; exit $EXIT; fi
 done
 
 for n in $(seq 1 $NODECOUNT); do
   vagrant up origin-node-$n --color <<< 'boot' || EXIT=$?
+  if [[ $EXIT != 0 ]]; then echo "Vagrant up error, no inventory file will be created (exit code $EXIT)"; exit $EXIT; fi
 done
-
-if [[ $EXIT != 0 ]]; then echo "Vagrant up error, no inventory file will be created"; exit $EXIT; fi
 
 MASTERIP=$(vagrant ssh-config origin-master | grep -Po '\d+\.\d+\.\d+\.\d+')
 INFRAIP=$(vagrant ssh-config origin-infra | grep -Po '\d+\.\d+\.\d+\.\d+')
