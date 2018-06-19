@@ -28,6 +28,7 @@ openshift_node_proxy_mode='iptables'
 
 # configure cluster metrics & logging
 openshift_metrics_install_metrics=true
+openshift_metrics_project=origin-metrics
 openshift_logging_install_logging=true
 
 # put the router on dedicated infra node
