@@ -27,8 +27,8 @@ os_sdn_network_plugin_name='redhat/openshift-ovs-multitenant'
 openshift_node_proxy_mode='iptables'
 
 # configure cluster metrics & logging (no permanent storage configured)
-openshift_metrics_install_metrics=true
-openshift_logging_install_logging=true
+# openshift_metrics_install_metrics=true
+# openshift_logging_install_logging=true
 
 # put the router on dedicated infra node
 openshift_hosted_router_selector='region=infra'
