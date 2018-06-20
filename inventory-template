@@ -26,7 +26,7 @@ os_sdn_network_plugin_name='redhat/openshift-ovs-multitenant'
 # configure service proxy: 'iptables' (default) or 'userspace'
 openshift_node_proxy_mode='iptables'
 
-# configure cluster metrics & logging
+# configure cluster metrics & logging (no permanent storage configured)
 openshift_metrics_install_metrics=true
 openshift_logging_install_logging=true
 
@@ -40,7 +40,7 @@ openshift_hosted_registry_selector='region=infra'
 # project pods should be placed on primary nodes
 osm_default_node_selector='region=primary'
 
-# etcd config for ASB
+# etcd storage config for ASB
 openshift_hosted_etcd_storage_kind=nfs
 openshift_hosted_etcd_storage_nfs_options="*(rw,root_squash,sync,no_wdelay)"
 openshift_hosted_etcd_storage_nfs_directory=/opt/osev3-etcd 
