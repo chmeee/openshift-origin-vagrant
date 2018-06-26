@@ -25,8 +25,8 @@ Vagrant.configure("2") do |config|
 
   cluster_nodes.each do |node|
     config.vm.define node do |device|
-      device.vm.box = "azure"
       device.vm.host_name = node
+      device.vm.box = "centos/7"
 
       device.vm.provider :libvirt do |v|
         v.memory = MEMORY
@@ -38,7 +38,6 @@ Vagrant.configure("2") do |config|
       config.ssh.forward_agent = true
       config.ssh.guest_port = 22
       config.ssh.insert_key = false
-      config.ssh.private_key_path = '~/.ssh/id_rsa'
 
       device.vm.provision :shell , path: "./helper_scripts/config_server.sh"
     end
