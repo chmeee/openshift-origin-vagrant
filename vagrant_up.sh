@@ -64,8 +64,10 @@ vagrant ssh origin-master -c 'sudo cat /etc/origin/master/admin.kubeconfig' > ad
 if ! grep -q cluster admin.kubeconfig; then echo "Error copying the admin.kubeconfig file"; exit 1; fi
 
 echo "# The OpenShift web console is available in the folloing URL"
-echo "# https://"$(grep openshift_public_hostname inventory | cut -f2 -d= | tr -d \")":8443"
+echo "https://"$(grep openshift_public_hostname inventory | cut -f2 -d= | tr -d \")":8443"
 
 echo "# Execute the following to have oc configured with the openshift cluster for this shell"
 echo "export KUBECONFIG=$PWD/admin.kubeconfig"
 
+echo "# Alternatively, you can log in to the openshift master to use oc, like this:"
+echo "vagrant ssh origin-master"
