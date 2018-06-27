@@ -2,7 +2,12 @@
 
 Please, find the original post from [Bernd](https://github.com/berndonline) and explanation of the environment [here](https://techbloc.net/archives/2581). This is a fork from [his repo](https://github.com/berndonline/openshift-origin-vagrant) where I tried to automate everything so you don't have to do multiple steps to have your OpenShift running on KVM.
 
-Now, running `vagrant_up.sh` will:
+Running `centos-setup.sh` will install all the needed requirements, including cloning this repository and the Ansible one.
+It is not supposed to run on this directory but to bootstrap the cluster by executing:
+
+    curl https://raw.githubusercontent.com/chmeee/openshift-origin-vagrant/master/centos-setup.sh | bash - 
+
+Running `origin-cluster-up.sh` will:
   * Clone the OpenShift Ansible repository if you haven't done so
   * Create the machines (you can select how much memory and how many nodes in the `Vagrantfile`)
   * Generate a `inventory` file from the `inventory-template` (Origin verion 3.7.2, `ovs-multitenant` network plugin and `xip.io` as domain are used by default, change it to fit your needs)
