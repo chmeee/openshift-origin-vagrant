@@ -1,9 +1,16 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby : 
 
-MEMORY=2048
-NODECOUNT=2
+##
+## Personalize these two parameters
+## It is known to work with MEMORY=2048 and NODECOUNT=2 in a 16Mb RAM system and 8 core CPU
+##
+MEMORY=4096 # Megabytes. Please only use multiples of 1024.
+NODECOUNT=2 # Minium 2 nodes.
 
+##
+## Here be dragons
+##
 Vagrant.configure("2") do |config|
   config.hostmanager.enabled = true
   config.hostmanager.manage_host = true
