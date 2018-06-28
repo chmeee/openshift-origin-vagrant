@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-NODECOUNT=$(grep ^NODECOUNT= Vagrantfile | cut -f2 -d=)
-MEMORY=$(( $(grep ^MEMORY= Vagrantfile | cut -f2 -d=) / 1024 ))
+NODECOUNT=$(grep ^NODECOUNT= Vagrantfile | cut -f2 -d= | cut -f1 -d' ')
+MEMORY=$(( $(grep ^MEMORY= Vagrantfile | cut -f2 -d= | cut -f1 -d' ') / 1024 ))
 
 EXIT=0
 
