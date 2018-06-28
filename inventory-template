@@ -40,18 +40,20 @@ openshift_hosted_registry_selector='region=infra'
 # project pods should be placed on primary nodes
 osm_default_node_selector='region=primary'
 
+openshift_enable_service_catalog=false
+
 # etcd storage config for ASB
-openshift_hosted_etcd_storage_kind=nfs
-openshift_hosted_etcd_storage_nfs_options="*(rw,root_squash,sync,no_wdelay)"
-openshift_hosted_etcd_storage_nfs_directory=/opt/osev3-etcd 
-openshift_hosted_etcd_storage_volume_name=etcd-vol2 
-openshift_hosted_etcd_storage_access_modes=["ReadWriteOnce"]
-openshift_hosted_etcd_storage_volume_size=1G
-openshift_hosted_etcd_storage_labels={'storage': 'etcd'}
+# openshift_hosted_etcd_storage_kind=nfs
+# openshift_hosted_etcd_storage_nfs_options="*(rw,root_squash,sync,no_wdelay)"
+# openshift_hosted_etcd_storage_nfs_directory=/opt/osev3-etcd 
+# openshift_hosted_etcd_storage_volume_name=etcd-vol2 
+# openshift_hosted_etcd_storage_access_modes=["ReadWriteOnce"]
+# openshift_hosted_etcd_storage_volume_size=1G
+# openshift_hosted_etcd_storage_labels={'storage': 'etcd'}
 
 # ASB config
-ansible_service_broker_image_prefix=openshift/
-ansible_service_broker_registry_url="registry.access.redhat.com"
+# ansible_service_broker_image_prefix=openshift/
+# ansible_service_broker_registry_url="registry.access.redhat.com"
 # ansible_service_broker_registry_user=<user_name> 
 # ansible_service_broker_registry_password=<password> 
 # ansible_service_broker_registry_organization=<organization> 
