@@ -2,7 +2,7 @@
 masters
 nodes
 etcd
-nfs
+# nfs
 
 [OSEv3:vars]
 ansible_ssh_user=vagrant
@@ -69,8 +69,8 @@ origin-master  openshift_public_hostname="console.MASTERIP.xip.io"
 [etcd]
 origin-etcd
 
-[nfs]
-origin-master
+# [nfs]
+# master
 
 [nodes]
 # master needs to be included in the node to be configured in the SDN
