@@ -46,7 +46,7 @@ Vagrant.configure("2") do |config|
       config.ssh.guest_port = 22
       config.ssh.insert_key = false
 
-#      device.vm.provision :shell , path: "./helper_scripts/config_server.sh"
+      device.vm.provision :shell , path: "./helper_scripts/config_server.sh"
     end
   end
 end

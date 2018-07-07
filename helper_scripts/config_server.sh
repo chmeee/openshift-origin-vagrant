@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 ## Install network analysis tools
-yum install -y tcpdump
+yum install -y tcpdump wireshark
 
 ## Convenience script to use ovs commands on the openvswitch container
 mkdir /home/vagrant/bin
