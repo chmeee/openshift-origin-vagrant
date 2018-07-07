@@ -19,3 +19,5 @@ END
 
 ln /home/vagrant/bin/ovs-{vsctl,appctl}
 ln /home/vagrant/bin/ovs-{vsctl,ofctl}
+
+chmod 755 /home/vagrant/bin/ovs-*
