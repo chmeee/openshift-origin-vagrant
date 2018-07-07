@@ -5,7 +5,12 @@ mkdir /home/vagrant/bin
 cat << 'END' > /home/vagrant/bin/ovs-vsctl
 #!/usr/bin/env bash
 
-sudo docker exec -ti openvswitch $(basename $0) $@
+COMMAND=$(basename $0)
+ARGS=$@
+
+if [[ $COMMAND == "ovs-ofctl" ]]; then ARGS=${ARGS}" -O OpenFlow13"; fi
+
+sudo docker exec -ti openvswitch $COMMAND $ARGS
 END
 
 ln /home/vagrant/bin/ovs-{vsctl,appctl}
