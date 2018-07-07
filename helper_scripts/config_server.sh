@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+## Install network analysis tools
+yum install -y tcpdump
+
+## Convenience script to use ovs commands on the openvswitch container
 mkdir /home/vagrant/bin
 
 cat << 'END' > /home/vagrant/bin/ovs-vsctl
