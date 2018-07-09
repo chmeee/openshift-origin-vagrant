@@ -3,6 +3,9 @@
 ## Install network analysis tools
 yum install -y tcpdump wireshark nmap-ncat net-tools
 
+## Add vagrant to wireshark group
+usermod -a -G wireshark vagrant
+
 ## Convenience script to use ovs commands on the openvswitch container
 mkdir /home/vagrant/bin
 
@@ -19,5 +22,6 @@ END
 
 ln /home/vagrant/bin/ovs-{vsctl,appctl}
 ln /home/vagrant/bin/ovs-{vsctl,ofctl}
+ln /home/vagrant/bin/ovs-{vsctl,dpctl}
 
 chmod 755 /home/vagrant/bin/ovs-*
