@@ -2,6 +2,10 @@
 
 NODECOUNT=$(grep ^NODECOUNT= Vagrantfile | cut -f2 -d= | cut -f1 -d' ')
 
+echo -- pod containers ip addresses using docker ps --
 for role in $(seq -f "node-%g" 1 $NODECOUNT); do
   vagrant ssh origin-$role -c 'sudo docker ps --format "{{ .Names }}" | grep POD | while read pod; do echo -n "$pod: " ; sudo docker exec $pod hostname --ip-address; done' 2> /dev/null
 done
+
+echo -- pod containers ip addresses using oc --
+oc get pods -o wide --all-namespaces
