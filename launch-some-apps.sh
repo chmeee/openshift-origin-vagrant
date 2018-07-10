@@ -8,6 +8,8 @@ fi
 
 NUMPROJ=$1
 
+oc login -u demo -p demo
+
 for p in $(seq -w 1 $NUMPROJ); do
   oc new-project test$p
   oc project test$p
