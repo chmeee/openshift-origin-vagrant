@@ -45,7 +45,7 @@ enterprise=nuage
 domain=openshift
 vsc_active_ip=192.168.122.204
 vsc_standby_ip=192.168.122.205
-uplink_interface=eth1
+uplink_interface=eth0
 nuage_openshift_monitor_log_dir=/var/log/nuage-openshift-monitor
 nuage_interface_mtu=1450
 # auto scale subnets feature
