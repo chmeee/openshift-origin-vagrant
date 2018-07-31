@@ -2,6 +2,9 @@
 
 ## Install network analysis tools
 yum install -y tcpdump wireshark nmap-ncat net-tools docker
+yum clean all
+rm -rf /var/cache/yum
+
 systemctl start docker
 
 ## Add vagrant to wireshark group
